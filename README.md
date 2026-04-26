@@ -76,9 +76,11 @@ rating: <1-5>/5
 
 | ID | 标题 | 标签 | 评分 | 一句话判断 |
 |---|---|---|---|---|
+| [2604.14228-dive-into-claude-code](papers/2604.14228-dive-into-claude-code.md) | Dive into Claude Code: The Design Space of Today's and Future AI Agent Systems | `context-engineering` `agent-architecture` `prompt-cache` `memory` | 5/5 | Claude Code v2.1.88 源码级架构教科书；最值得抄的是『五层 compaction pipeline』和『context collapse 是 read-time projection』 |
 | [2501.03276-commer](papers/2501.03276-commer.md) | ComMer: Compressing and Merging User Data for Personalization | `prompt-compression` `soft-prompt` `personalization` `memory` | 4/5 | 风格类记忆可压；事实类记忆不可压（结构性限制） |
 
 ---
 
 最近添加：
+- 2026-04-26 [[2604.14228-dive-into-claude-code]] — context assemble / compact / cache 的工程范式参考
 - 2026-04-26 [[2501.03276-commer]] — Anthropic context engineering 引用文献
