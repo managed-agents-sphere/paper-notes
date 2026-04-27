@@ -76,7 +76,7 @@ rating: <1-5>/5
 
 | ID | 标题 | 标签 | 评分 | 一句话判断 |
 |---|---|---|---|---|
-| [anthropic2026-speculative-caching](papers/anthropic2026-speculative-caching.md) | Speculative Prompt Caching：把 cache_creation 延迟藏在用户打字时间里 | `prompt-cache` `context-engineering` `agent-architecture` | 4/5 | 用户键入时后台 max_tokens=1 异步预热 cache，提交时 TTFT 接近无 prefill；warming 命中率 ≥80% 才划算 |
+| [anthropic2026-prompt-caching](papers/anthropic2026-prompt-caching.md) | Anthropic Prompt Cache 的三级阶梯：自动、显式、投机 | `prompt-cache` `context-engineering` `agent-architecture` | 4/5 | 三级阶梯共用字节级 prefix 匹配契约——automatic 默认起点、explicit 给独立 TTL 与 4 breakpoint、speculative 把 cache 写入从请求生命周期抽出来塞进用户键入并行窗口；前两级省钱兼省时，第三级用 token 换 TTFT |
 | [anthropic2026-context-stack](papers/anthropic2026-context-stack.md) ⓘ | Anthropic Context Stack：从 token 预算到跨会话记忆的五件套（合订本） | `context-engineering` `prompt-cache` `memory` `agent-architecture` `evaluation` | 5/5 | 5 件 API 原语 + 综合分析合订本；逐节拆解 context-windows/token-counting/prompt-caching/compaction/context-editing 并拼出依赖图与 4 个工作流食谱 |
 | [2604.14228-dive-into-claude-code](papers/2604.14228-dive-into-claude-code.md) | Dive into Claude Code: The Design Space of Today's and Future AI Agent Systems | `context-engineering` `agent-architecture` `prompt-cache` `memory` | 5/5 | Claude Code v2.1.88 源码级架构教科书；最值得抄的是『五层 compaction pipeline』和『context collapse 是 read-time projection』 |
 | [2501.03276-commer](papers/2501.03276-commer.md) | ComMer: Compressing and Merging User Data for Personalization | `prompt-compression` `soft-prompt` `personalization` `memory` | 4/5 | 风格类记忆可压；事实类记忆不可压（结构性限制） |
@@ -86,7 +86,7 @@ rating: <1-5>/5
 ---
 
 最近添加：
-- 2026-04-27 [[anthropic2026-speculative-caching]] — cache 进阶模式：用户键入时预热 cache 降 TTFT
+- 2026-04-27 [[anthropic2026-prompt-caching]] — cache 三级阶梯（自动 / 显式 / 投机）合并解读
 - 2026-04-27 [[anthropic2026-context-stack]] — Anthropic Context API 五件套合订本（与 Claude Code paper 配套阅读）
 - 2026-04-26 [[2604.14228-dive-into-claude-code]] — context assemble / compact / cache 的工程范式参考
 - 2026-04-26 [[2501.03276-commer]] — Anthropic context engineering 引用文献
