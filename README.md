@@ -76,11 +76,25 @@ rating: <1-5>/5
 
 | ID | 标题 | 标签 | 评分 | 一句话判断 |
 |---|---|---|---|---|
+| [anthropic2026-context-stack](papers/anthropic2026-context-stack.md) ⓘ | Anthropic Context Stack：从 token 预算到跨会话记忆的五件套（综述） | `context-engineering` `prompt-cache` `memory` `agent-architecture` | 5/5 | 5 件 API 原语拼成的 context 工程界面；caching 是地基、count_tokens 是度量衡、clearing/compaction/memory 各管一类增长 |
+| [anthropic2026-context-windows](papers/anthropic2026-context-windows.md) | Context windows — Claude API Docs | `context-engineering` `prompt-cache` `agent-architecture` | 4/5 | 1M 是天花板不是默认；超 200K 部分 2x 计费定义了 caching/compaction/editing 的优先级 |
+| [anthropic2026-token-counting](papers/anthropic2026-token-counting.md) | Token counting — Claude API Docs | `context-engineering` `evaluation` | 3/5 | 基础设施级度量衡；免费但 estimate 不能用于对账；高频调用要预算独立 rate limit |
+| [anthropic2026-prompt-caching](papers/anthropic2026-prompt-caching.md) | Prompt caching — Claude API Docs | `prompt-cache` `context-engineering` `agent-architecture` | 5/5 | 最便宜的 context 优化（read 0.1x，省 90%），但 prefix 一变就失效——上层一切 compaction/editing 都必须 cache-aware |
+| [anthropic2026-compaction](papers/anthropic2026-compaction.md) | Compaction — Claude API Docs | `context-engineering` `agent-architecture` `prompt-cache` | 5/5 | 最重的 context 操作（一次 LLM 摘要）；whole-transcript 扁平化 + 50K 下限决定它只能用于 long horizon |
+| [anthropic2026-context-editing](papers/anthropic2026-context-editing.md) | Context editing — Claude API Docs | `context-engineering` `agent-architecture` `prompt-cache` `memory` | 5/5 | 最便宜的 in-session 原语（无 inference cost）；clear_at_least 是 cache-aware 设计的活化石 |
 | [2604.14228-dive-into-claude-code](papers/2604.14228-dive-into-claude-code.md) | Dive into Claude Code: The Design Space of Today's and Future AI Agent Systems | `context-engineering` `agent-architecture` `prompt-cache` `memory` | 5/5 | Claude Code v2.1.88 源码级架构教科书；最值得抄的是『五层 compaction pipeline』和『context collapse 是 read-time projection』 |
 | [2501.03276-commer](papers/2501.03276-commer.md) | ComMer: Compressing and Merging User Data for Personalization | `prompt-compression` `soft-prompt` `personalization` `memory` | 4/5 | 风格类记忆可压；事实类记忆不可压（结构性限制） |
+
+> ⓘ 标记为综述（survey 结构，不严格遵循八段式）。
 
 ---
 
 最近添加：
+- 2026-04-27 [[anthropic2026-context-stack]] — Anthropic Context API 五件套综述（与 Claude Code paper 配套阅读）
+- 2026-04-27 [[anthropic2026-context-editing]] — `clear_tool_uses_20250919` 与 cache-aware 的 `clear_at_least` 字段
+- 2026-04-27 [[anthropic2026-compaction]] — server-side `compact_20260112` + SDK `compaction_control`
+- 2026-04-27 [[anthropic2026-prompt-caching]] — 5min/1h TTL、4 breakpoints、2026-03 静默事件
+- 2026-04-27 [[anthropic2026-token-counting]] — `count_tokens` endpoint，免费但 estimate
+- 2026-04-27 [[anthropic2026-context-windows]] — 1M / 200K + premium pricing 的硬约束
 - 2026-04-26 [[2604.14228-dive-into-claude-code]] — context assemble / compact / cache 的工程范式参考
 - 2026-04-26 [[2501.03276-commer]] — Anthropic context engineering 引用文献
