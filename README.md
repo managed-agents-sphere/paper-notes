@@ -9,8 +9,10 @@ paper-notes/
 ├── README.md                        # 索引（本文件）
 ├── templates/
 │   └── paper.md                     # 标准模板（八段式）
-└── papers/
-    └── <arxiv-id>-<short-slug>.md   # 一篇论文一个文件
+├── papers/
+│   ├── <arxiv-id>-<short-slug>.md   # 一篇论文一个文件
+│   └── assets/                      # 共享图片资源（PNG/SVG）
+└── research/                        # 中间稿/推演过程（gitignored，本地保留）
 ```
 
 阶段一：纯 markdown，扁平存放，GitHub 直接渲染。
@@ -76,17 +78,19 @@ rating: <1-5>/5
 
 | ID | 标题 | 标签 | 评分 | 一句话判断 |
 |---|---|---|---|---|
-| [anthropic2026-prompt-caching](papers/anthropic2026-prompt-caching.md) | Anthropic Prompt Cache 的三级阶梯：自动、显式、投机 | `prompt-cache` `context-engineering` `agent-architecture` | 4/5 | 三级阶梯共用字节级 prefix 匹配契约——automatic 默认起点、explicit 给独立 TTL 与 4 breakpoint、speculative 把 cache 写入从请求生命周期抽出来塞进用户键入并行窗口；前两级省钱兼省时，第三级用 token 换 TTFT |
+| [anthropic2026-context-engineering](papers/anthropic2026-context-engineering.md) ⓘ | Anthropic 2026 Context Engineering 四件套：Compact / Cache / Tools / Skill | `context-engineering` `prompt-cache` `agent-architecture` `memory` | 5/5 | 两条横切机制（cache、compact）× 两条对象侧投影（tool 三件套、skill）正交可叠加；原则永远是"看瓶颈点菜"，不是默认全开 |
 | [anthropic2026-context-stack](papers/anthropic2026-context-stack.md) ⓘ | Anthropic Context Stack：从 token 预算到跨会话记忆的五件套（合订本） | `context-engineering` `prompt-cache` `memory` `agent-architecture` `evaluation` | 5/5 | 5 件 API 原语 + 综合分析合订本；逐节拆解 context-windows/token-counting/prompt-caching/compaction/context-editing 并拼出依赖图与 4 个工作流食谱 |
+| [claude-code-context-agent-subagent](papers/claude-code-context-agent-subagent.md) ⓘ | Claude Code 源码深挖：subagent 与上下文组装 | `agent-architecture` `context-engineering` `prompt-cache` `memory` | — | Claude Code 源码级 subagent 路径剖析（named vs fork）、5 段独立通道、cache 共享性、PLAN A 理论篇的 6 处修订 |
 | [2604.14228-dive-into-claude-code](papers/2604.14228-dive-into-claude-code.md) | Dive into Claude Code: The Design Space of Today's and Future AI Agent Systems | `context-engineering` `agent-architecture` `prompt-cache` `memory` | 5/5 | Claude Code v2.1.88 源码级架构教科书；最值得抄的是『五层 compaction pipeline』和『context collapse 是 read-time projection』 |
 | [2501.03276-commer](papers/2501.03276-commer.md) | ComMer: Compressing and Merging User Data for Personalization | `prompt-compression` `soft-prompt` `personalization` `memory` | 4/5 | 风格类记忆可压；事实类记忆不可压（结构性限制） |
 
-> ⓘ 标记为合订本/综述（不严格遵循八段式；包含 5 篇 build-with-claude 文档的逐节分析 + 跨篇综合）。
+> ⓘ 标记为合订本/综述/源码研究（不严格遵循八段式）。
 
 ---
 
 最近添加：
-- 2026-04-27 [[anthropic2026-prompt-caching]] — cache 三级阶梯（自动 / 显式 / 投机）合并解读
+- 2026-04-29 [[claude-code-context-agent-subagent]] — Claude Code 源码级 subagent 与上下文组装深挖
+- 2026-04-29 [[anthropic2026-context-engineering]] — Context engineering 四件套合订本（覆盖原 prompt-caching 单篇）
 - 2026-04-27 [[anthropic2026-context-stack]] — Anthropic Context API 五件套合订本（与 Claude Code paper 配套阅读）
 - 2026-04-26 [[2604.14228-dive-into-claude-code]] — context assemble / compact / cache 的工程范式参考
 - 2026-04-26 [[2501.03276-commer]] — Anthropic context engineering 引用文献
