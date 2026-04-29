@@ -1,10 +1,24 @@
-# Subagent 与上下文组装：源码深挖（PLAN C 合订本）
+---
+title: "Claude Code 源码深挖：Subagent 与上下文组装"
+authors: [Xianping]
+affiliation: managed-agents-sphere
+arxiv:
+year: 2026
+read_date: 2026-04-29
+tags: [agent-architecture, context-engineering, prompt-cache, memory]
+related: [anthropic2026-context-engineering, anthropic2026-context-stack, 2604.14228-dive-into-claude-code]
+cited_by: []
+verdict: "Claude Code 源码级 subagent 路径剖析（named vs fork）、5 段独立通道、cache 共享性；与 2604.14228 公开论文版互补——后者讲设计空间、本文讲实现锚点"
+rating: "—"
+---
+
+# Claude Code 源码深挖：Subagent 与上下文组装
 
 > 第一手材料：`../claude-code/src/`（55 个目录的 TypeScript 源码）。
 >
-> 范围：subagent 调用路径、上下文组装机制、cache 行为、与 PLAN A 理论篇的差异。
+> 范围：subagent 调用路径、上下文组装机制、cache 行为、与 2604.14228 公开论文的差异。
 >
-> **合规**：本文件含 file:line 锚点与短代码片段（≤10 行），仅内部研究流转。发布稿在 `docs/01-architecture/02-source-architecture.md`，不含 verbatim 源码。
+> 引用风格：仅 file:line 锚点 + 短代码片段（≤10 行），不含 verbatim 大段源码。
 
 ---
 
